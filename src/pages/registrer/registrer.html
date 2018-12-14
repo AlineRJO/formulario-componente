@@ -66,7 +66,12 @@
   <ion-row>
     <ion-col>
       <ion-label>Endereço Comercial *</ion-label>
-      <input type='text' formControlName="comercialAdress" class="col" mask="wwwwwwwwwwwwwww">
+      <input 
+        type='text' 
+        formControlName="comercialAdress" 
+        class="col" 
+        [patterns]="customPatterns" 
+        mask="0{15}">
     </ion-col>
   </ion-row>  
 
@@ -88,14 +93,18 @@
     </ion-col>
     <ion-col class="col-6">
       <ion-label>Complemento</ion-label>
-      <input type='text' formControlName="complementAdress" class="col" mask="wwwwwwwwwwwwwww">
+      <input type='text' 
+        formControlName="complementAdress" 
+        class="col" 
+        [patterns]="customPatterns" 
+        mask="0{15}">
     </ion-col>
   </ion-row>  
 
   <ion-row *ngIf="msgValid?.v_numberComercial != undefined">
     <ion-col>
       <ion-row>
-      <ion-col class="col-12"class="bg-warning">
+      <ion-col class="col-12" class="bg-warning">
         <i class="fa fa-exclamation-triangle"></i> 
         {{msgValid?.v_numberComercial}}
       </ion-col>
@@ -198,7 +207,12 @@
   <ion-row>
     <ion-col class="col-12">
       <ion-label>E-mail *</ion-label>
-      <input type='text' formControlName="email" class="col" mask="eeeeeeeeeeeeeeeeeeee">
+      <input 
+        type='text' 
+        formControlName="email" 
+        class="col" 
+        [patterns]="emailPatterns" 
+        mask="0{15}">
     </ion-col>
   </ion-row>  
   

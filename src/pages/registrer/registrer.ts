@@ -14,6 +14,8 @@ export class RegistrerPage implements OnInit{
   private formGroup: FormGroup;
   private msgValid: userModel;
   title: string;
+  public customPatterns = {'0': { pattern: new RegExp('\[a-zA-Z0-9 -,\]')}};
+  public emailPatterns = {'0': { pattern: new RegExp('\[a-zA-Z0-9@-.\]')}};
 
   constructor(
     public navCtrl: NavController, 
