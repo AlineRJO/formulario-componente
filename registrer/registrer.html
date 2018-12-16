@@ -1,0 +1,245 @@
+<component-header [title]="title"></component-header>
+
+<ion-content padding class="bg">
+
+  <ion-row class="pb-4" text-center>
+    <ion-col class="col-1"></ion-col>
+    <ion-col class="col-10">
+      Insira seus dados para gerar seu<br> cartão de visitas.
+    </ion-col>
+  </ion-row>
+
+  <form [formGroup]="formGroup" (ngSubmit)="generate()" class="col-12 bg">
+
+  <ion-row style="align-items: center;">
+ 
+    <ion-col class="col-4" (click)=" tirarFoto()">
+      <ion-icon *ngIf="!image" name="ios-contact" class="photoIcon"></ion-icon>
+      <div *ngIf="image"><img src="{{image}}"> </div>
+    </ion-col>
+    <ion-col class="col-8">
+      <ion-row style="margin-right: -6px;">
+        <ion-col class="col-12">
+          <ion-label>Nome *</ion-label>
+          <input type='text' formControlName="name" class="col" mask="S{15}">
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="msgValid?.v_name != undefined">
+        <ion-col>
+          <ion-row>
+          <ion-col class="col-12"class="bg-warning">
+            <i class="fa fa-exclamation-triangle"></i> 
+            {{msgValid?.v_name}}
+          </ion-col>
+        </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-right: -6px;">
+        <ion-col class="col-12">
+          <ion-label>Sobrenome *</ion-label>
+          <input type='text' formControlName="lastName" class="col" mask="SSSSSSSSSSSSSSS">
+        </ion-col>
+      </ion-row> 
+
+      <ion-row *ngIf="msgValid?.v_lastName != undefined">
+        <ion-col class="col-12 bg-warning">
+          <i class="fa fa-exclamation-triangle"></i> 
+          {{msgValid?.v_lastName}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-right: -6px;">
+        <ion-col class="col-12">
+          <ion-item>
+            <ion-checkbox formControlName="photoUrl"></ion-checkbox>
+            <ion-label>Usar foto de perfil</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ion-col>
+  </ion-row>
+
+  <hr>
+  <ion-row>
+    <ion-col>
+      <ion-label>Endereço Comercial *</ion-label>
+      <input 
+        type='text' 
+        formControlName="comercialAdress" 
+        class="col" 
+        [patterns]="customPatterns" 
+        mask="0{15}">
+    </ion-col>
+  </ion-row>  
+
+  <ion-row *ngIf="msgValid?.v_comercialAdress != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_comercialAdress}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="col-6">
+      <ion-label>Número *</ion-label>
+      <input type='text' formControlName="numberComercial" class="col" mask="000000">
+    </ion-col>
+    <ion-col class="col-6">
+      <ion-label>Complemento</ion-label>
+      <input type='text' 
+        formControlName="complementAdress" 
+        class="col" 
+        [patterns]="customPatterns" 
+        mask="0{15}">
+    </ion-col>
+  </ion-row>  
+
+  <ion-row *ngIf="msgValid?.v_numberComercial != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12" class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_numberComercial}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="msgValid?.v_complementAdress != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_complementAdress}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="col-6">
+      <ion-label>CEP *</ion-label>
+      <input type='text' mask="00000.000" formControlName="cep" class="col">
+    </ion-col>
+    <ion-col class="col-4">
+      <ion-label>Cidade *</ion-label>
+      <input type='text' 
+        formControlName="city" 
+        class="col" 
+        [patterns]="customPatterns" 
+        mask="1{15}">
+    </ion-col>
+    <ion-col class="col-2">
+      <ion-label>UF *</ion-label>
+      <input type='text' formControlName="state" class="col" mask="SS">
+    </ion-col>
+  </ion-row>  
+
+  <ion-row *ngIf="msgValid?.v_cep != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_cep}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="msgValid?.v_city != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_city}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="msgValid?.v_state != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_state}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="col-6">
+      <ion-label>Tel. Comercial *</ion-label>
+      <input type='text' mask='(00) 000-000000' formControlName="numberComercial" class="col">
+    </ion-col>
+    <ion-col class="col-6">
+      <ion-label>Tel. Celular</ion-label>
+      <input type='text' mask='(00) 000-000000' formControlName="celPhone" class="col">
+    </ion-col>
+  </ion-row>  
+
+  <ion-row *ngIf="msgValid?.v_numberComercial != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_numberComercial}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="msgValid?.v_celPhone != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12"class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_celPhone}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="col-12">
+      <ion-label>E-mail *</ion-label>
+      <input 
+        type='text' 
+        formControlName="email" 
+        class="col" 
+        [patterns]="customPatterns" 
+        mask="2{15}">
+    </ion-col>
+  </ion-row>  
+  
+  <ion-row *ngIf="msgValid?.v_email != undefined">
+    <ion-col>
+      <ion-row>
+      <ion-col class="col-12" class="bg-warning">
+        <i class="fa fa-exclamation-triangle"></i> 
+        {{msgValid?.v_email}}
+      </ion-col>
+    </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="pt-5">
+    <ion-col class="col-6">
+      * Campos obrigatórios
+    </ion-col>
+    <ion-col class="col-6">
+      <button ion-button type="submit" col-12 class="btnGerar">Gerar</button>
+    </ion-col>
+  </ion-row>
+</form>
+
+
+</ion-content>

@@ -1,0 +1,39 @@
+page-registrer {
+    .photoIcon {
+        color: map-get($colors,lightGray); 
+        font-size: 8.2em;
+    }
+
+    .col{
+        font-size: 13px;
+        color: map-get($colors,bgTxt);
+        padding-right: 7px;
+        padding-left: 7px;
+    }
+
+    .bg{
+        background-color: map-get($colors,bgDark); 
+        background-image: linear-gradient(map-get($colors,bgDark), map-get($colors,bgLight));
+    }
+
+    input{
+        color: map-get($colors,dark)!important; 
+    }
+
+    .btnGerar{
+        background: transparent;
+        border: 2px solid map-get($colors,bgTxt); ;
+    }
+
+    .scroll-content {
+        margin-top: 56px;
+    }
+
+    .bg {
+        filter: grayscale(30%)
+    }
+    
+    .checkbox-md {
+        margin: 9px 9px 9px 4px
+    }
+}
